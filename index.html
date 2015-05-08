@@ -4,11 +4,10 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Ionic + Angular: Superpowers for Mobile App Development</title>
+    <title>Ionic - The Happy Path to Hybrid Apps</title>
 
-    <meta name="description" content="Ionic Framework Presentation: The beautiful, open source framework for developing hybrid mobile apps with HTML5.">
-    <meta name="author" content="https://twitter.com/adamdbradley">
-    <meta name="author" content="https://twitter.com/benjsperry">
+    <meta name="description" content="Ionic - The Happy Path to Hybrid Apps">
+    <meta name="author" content="https://twitter.com/jbavari">
     <link rel="shortcut icon" href="favicon.ico">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,35 +35,34 @@
   </head>
 
   <body>
-
+    <img src="img/ionic-logo-white.svg" style="position: fixed; top: 5%; left: 5%; width: 123px;">
     <div class="reveal">
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
 
-
-
-        <section data-background="img/superpower.jpg">
-          <h1 style="margin-top: 330px;" class="dark-shadow">Superpowers<br>for Mobile App Development</h1>
+        <section data-background>
+          <h1 style="margin-top: 60px;" class="dark-shadow">Ionic</h1>
+          <h1 class="dark-shadow" style="font-size: 50px">The <span style="color: yellow">Happy</span> path to Hybrid Apps</h1>
         </section>
 
 
-        <section data-background="img/madison.jpg">
-          <img src="img/me.jpg" style="width:200px; height: 200px;
+        <section data-background="">
+          <img src="img/me.jpeg" style="width:200px; height: 200px;
                                        max-width:none; max-height: none;
                                        position: absolute; left: 40px; top: -10px;
                                        border-radius: 50%; border: 4px solid black;
                                        box-shadow: 5px 0 10px black;">
-          <h1 class="left dark-shadow" style="margin-left:300px;">Adam Bradley</h1>
-          <h3 class="left dark-shadow" style="margin-left:300px;">Lead Ionic Developer</h3>
+          <h1 class="left dark-shadow" style="margin-left:300px;">Josh Bavari</h1>
+          <h3 class="left dark-shadow" style="margin-left:300px;">Ionic Tools Developer</h3>
           <ul class="me dark-shadow">
-            <li style="background:url(img/marker.png) no-repeat 0 8px;">Madison, WI, USA</li>
+            <li style="background:url(img/marker.png) no-repeat 0 8px;">Boulder, CO, USA</li>
             <li style="background:url(img/twitter.png) no-repeat 0 16px;">
-              <a href="https://twitter.com/adamdbradley" target="_blank" style="text-decoration:none">@adamdbradley</a>
+              <a href="https://twitter.com/jbavari" target="_blank" style="text-decoration:none">@jbavari</a>
             </li>
             <li style="background:url(img/github.png) no-repeat 0 17px;">
-              <a href="https://github.com/adamdbradley" target="_blank" style="text-decoration:none">
-                adamdbradley</a>
+              <a href="https://github.com/jbavari" target="_blank" style="text-decoration:none">
+                jbavari</a>
               </li>
           </ul>
         </section>
@@ -143,6 +141,17 @@
           <p style="font-size:10px">https://mixpanel.com/trends/#report/android_os_adoption</p>
         </section>
 
+        <section>
+          <h2>Problems you'll probably face</h2>
+          <ul>
+            <li>Firstly - getting started</li>
+            <li>Handling native look &amp; feel - iOS / Android</li>
+            <li>A common UI Kit</li>
+            <li>Navigation throughout the application</li>
+            <li>Performance</li>
+            <li>Accessing Native SDKs</li>
+          </ul>
+        </section>
 
         <section>
           <h3 style="margin:0">Native SDKs...</h3>
@@ -161,6 +170,10 @@
 
 
         <section data-background="img/websdk.png">
+        </section>
+
+        <section>
+          <h2>How does one make this process easier?</h2>
         </section>
 
 
@@ -370,6 +383,180 @@
         </section>
 
 
+        <section>
+          <h2>Top notch documentation</h2>
+          <p>Let's look at it</p>
+        </section>
+
+        <section>
+          <iframe src="http://ionicframework.com/docs/components/" style="height: 800px; width: 100%;">
+          </iframe>
+        </section>
+
+        <section>
+          <h2>Let's peek at boilerplate code</h2>
+        </section>
+
+        <section>
+          <h4>Basic App With States</h4>
+          <pre><code>
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+
+    // setup an abstract state for the tabs directive
+    .state('tab', {
+      url: "/tab",
+      abstract: true,
+      templateUrl: "templates/tabs.html"
+    })
+
+    // Each tab has its own nav history stack:
+
+    .state('tab.dash', {
+      url: '/dash',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/tab-dash.html',
+          controller: 'DashCtrl'
+        }
+      }
+    })
+
+    .state('tab.friends', {
+      url: '/friends',
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/tab-friends.html',
+          controller: 'FriendsCtrl'
+        }
+      }
+    })
+    .state('tab.friend-detail', {
+      url: '/friend/:friendId',
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/friend-detail.html',
+          controller: 'FriendDetailCtrl'
+        }
+      }
+    })
+
+    .state('tab.account', {
+      url: '/account',
+      views: {
+        'tab-account': {
+          templateUrl: 'templates/tab-account.html',
+          controller: 'AccountCtrl'
+        }
+      }
+    });
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/tab/dash');
+
+});
+          </code></pre>
+          <button class="code_enlarge">Enlarge</button>
+        </section>
+
+        <section>
+          <h4>An Angular Service</h4>
+          <pre><code>
+angular.module('starter.services', [])
+
+/**
+ * A simple example service that returns some data.
+ */
+.factory('Friends', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var friends = [
+    { id: 0, name: 'Scruff McGruff' },
+    { id: 1, name: 'G.I. Joe' },
+    { id: 2, name: 'Miss Frizzle' },
+    { id: 3, name: 'Ash Ketchum' }
+  ];
+
+  return {
+    all: function() {
+      return friends;
+    },
+    get: function(friendId) {
+      // Simple index lookup
+      return friends[friendId];
+    }
+  }
+});
+          </code></pre>
+          <button class="code_enlarge">Enlarge</button>
+        </section>
+
+        <section>
+          <h4>Angular Controller</h4>
+          <pre><code>
+angular.module('starter.controllers', [])
+
+.controller('DashCtrl', function($scope) {
+})
+
+.controller('FriendsCtrl', function($scope, Friends, $ionicActionSheet) {
+  $scope.friends = Friends.all();
+  
+  // Triggered on a button click, or some other target
+  $scope.show = function() {
+
+    // Show the action sheet
+    var hideSheet = $ionicActionSheet.show({
+      buttons: [
+        { text: '<b>Share</b> This' },
+        { text: 'Move' }
+      ],
+      destructiveText: 'Delete',
+      titleText: 'Modify your album',
+      cancelText: 'Cancel',
+      cancel: function() {
+           // add cancel code..
+         },
+      buttonClicked: function(index) {
+        return true;
+      }
+    });
+})
+
+.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
+  $scope.friend = Friends.get($stateParams.friendId);
+})
+
+.controller('AccountCtrl', function($scope) {
+});
+
+          </code></pre>
+          <button class="code_enlarge">Enlarge</button>
+        </section>
+
+
         <section data-background="img/ionitron.png">
           <blockquote class="ionic-blue" style=" margin-bottom: 250px; text-align: right;">
             ...but there's more to Ionic
@@ -382,6 +569,19 @@
           <p class="ionic-blue">Boilerplate <strong>app structure</strong> ready for customization</p>
           <p class="ionic-blue"><strong>LiveReload</strong> both local and native builds</p>
           <p class="ionic-blue">Build and run <strong>native apps</strong></p>
+        </section>
+
+        <section data-background="white">
+          <p class="ionic-blue">Not a fan of <strong>command line tools</strong>?</p>
+          <p class="ionic-blue">We've got an <strong>app</strong> for that..</p>
+        </section>
+
+        <section ><!-- data-background="img/IonicLabs.png" -->
+          <p>Introducing <strong>Ionic Labs</strong></p>
+          <p>Start a server</p>
+          <p>Preview iOS / Android quickly</p>
+          <p>Run your native app, and more..</p>
+          <img src="img/IonicLabs.png">
         </section>
 
 
@@ -429,46 +629,57 @@
         <section data-background="img/adoption.png">
           <h2 class="ionic-blue">Ionic's Adoption</h2>
           <ul class="ionic-blue">
-            <li>14,000+ Github Stars</li>
+            <li>16,000+ Github Stars</li>
             <li>Top 50 most starred Github repos</li>
             <li>Consistently Top 10 trending JS Github repos</li>
-            <li>Ionic CLI 70,000 downloads/month</li>
+            <!-- <li>Ionic CLI 90,000 downloads/month</li> -->
             <li>400,000+ Ionic apps have been started from our CLI</li>
             <li>Released Alpha: November 2013</li>
             <li>Released Beta: March 2014</li>
+            <li>Releasing 1.0: May 2015</li>
           </ul>
         </section>
 
-
         <section data-background="white">
-          <img src="img/v1rc.png">
+          <h2 class="ionic-blue">You're probably wondering..</h2>
+          <h4 class="ionic-blue"><strong>Angular 2?</strong></h4>
+
+          <p class="ionic-blue" style="margin-top: 80px;">Yes, we are <strong>working with</strong> the Angular team.</p>
+          <p class="ionic-blue"><strong>Angular CLI</strong> - Ionic will be supported!</p>
+          <!-- <p class="ionic-blue"><strong>Ionic 2</strong> - full ES6, easier to use, <strong>performance</strong></p> -->
+
         </section>
 
+        <!-- <section data-background="white">
+          <img src="img/v1rc.png">
+        </section> -->
+
+        <section data-background="img/ionic-angular-v2.jpg">
+        </section>
 
         <section>
           <h2>What's Next!</h2>
           <ul>
-            <li>Removal of JavaScript scrolling</li>
+            <li>Ionic 2 with Angular 2!</li>
+            <!-- <li>Removal of JavaScript scrolling</li> -->
             <li>Component Modularity</li>
+            <li>Ionic app scaffolding</li>
             <li>Customized Animations</li>
             <li>Webworkers and Multi-threading</li>
-            <li>Add more Ionic.io services</li>
-            <li>...and much more to come ;)</li>
+            <li>Ionic Labs - GUI for app tasks</li>
+            <!-- <li>Add more Ionic.io services</li> -->
+            <!-- <li>...and much more to come ;)</li> -->
           </ul>
-        </section>
-
-
-        <section data-background="img/ionic-angular-v2.jpg">
         </section>
 
 
         <section>
           <h2><code style="font-size: 80px">&lt;/html&gt;</code></h2>
           <h3 style="text-transform:none; font-size: 46px">
-            <a style="text-decoration:none;" href="https://twitter.com/adamdbradley" target="_blank">@adamdbradley</a>
+            <a style="text-decoration:none;" href="https://twitter.com/jbavari" target="_blank">@jbavari</a>
           </h3>
           <h4 style="text-transform:none;font-size:36px;margin-top:50px;">
-            <a style="text-decoration:none;" href="http://adamdbradley.github.io/ionic-present/#/">http://adamdbradley.github.io/ionic-present</a>
+            <a style="text-decoration:none;" href="http://jbavari.github.io/ionic-present/#/">http://jbavari.github.io/ionic-happy-path</a>
           </h4>
         </section>
 
@@ -479,6 +690,7 @@
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="js/jquery.min.js"></script>
 
     <script>
 
@@ -503,7 +715,37 @@
         ]
       });
 
+       var codeHighlight = false;
+
+        $(function(){
+            $(document).on("click", ".code_enlarge", function(e) {
+                var code = $(this).parent().find("code");
+                $("#code_highlight").css("display", "block");
+                $("#code_highlight").find("code").text(code.text());
+                codeHighlight = true;
+                hljs.highlightBlock($("#code_highlight").find("code")[0]);
+                e.preventDefault();
+                return false;
+            });
+
+            $(document).on("click", "#code_close", function(e){
+                if(codeHighlight) {
+                    $("#code_highlight").css("display", "none");
+                    codeHighlight = false;
+                }
+                e.preventDefault();
+                return false;
+            });
+        })
+
     </script>
+
+    <div id="code_highlight" style="display: none">
+        <pre><code data-trim contenteditable>
+        </code></pre>
+
+        <button id="code_close" style="position: absolute; top: 0; right: 100px;">Close</button>
+    </div>
 
   </body>
 </html>

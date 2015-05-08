@@ -170,4 +170,18 @@ section.has-light-background {
 
 }
 
+#code_highlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+}
 
+#code_highlight pre, #code_highlight code {
+    height: 100%;
+    width: 100%;
+    font-size: 1.5em;
+    overflow: auto;
+}
